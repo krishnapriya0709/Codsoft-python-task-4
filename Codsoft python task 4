@@ -1,0 +1,31 @@
+import tkinter as tk
+import random
+
+root = tk.Tk()
+root.title("Rock Paper Scissors")
+
+choices = ['Rock', 'Paper', 'Scissors']
+player_var = tk.StringVar()
+
+player_label = tk.Label(root, text="Choose:").pack()
+player_menu = tk.OptionMenu(root, player_var, *choices).pack()
+
+def play():
+    computer_choice = random.choice(choices)
+    player_choice = player_var.get()
+    
+    print("You chose:", player_choice)
+    print("Computer chose:", computer_choice)
+    
+    if player_choice == computer_choice:
+        print("It's a tie!")
+    elif (player_choice == 'Rock' and computer_choice == 'Scissors') or \
+         (player_choice == 'Paper' and computer_choice == 'Rock') or \
+         (player_choice == 'Scissors' and computer_choice == 'Paper'):
+        print("You win!")
+    else:
+        print("Computer wins!")
+
+play_button = tk.Button(root, text="Play", command=play).pack()
+
+root.mainloop()
